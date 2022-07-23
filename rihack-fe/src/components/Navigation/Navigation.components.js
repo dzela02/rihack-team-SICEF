@@ -37,6 +37,7 @@ const Navigation = () => {
                 <Button onClick={() => navigate('/add-report')}>
                   Add report
                 </Button>
+                <Button onClick={() => navigate('/reports')}>Reports</Button>
                 <Button onClick={() => navigate('/buildings')}>
                   Buildings
                 </Button>
