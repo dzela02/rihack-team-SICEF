@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import Navigation from '../../components/Navigation';
 import {
   Table,
@@ -10,6 +10,7 @@ import {
   Modal,
 } from '@mui/material';
 import mapboxgl from 'mapbox-gl';
+import { getAllReports } from '../../api/reports/index';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './BackOffice.styles.scss';
@@ -62,9 +63,24 @@ const BackOffice = () => {
   const [mapModal, setMapModal] = useState(false);
   const [lat, setLat] = useState(null);
   const [long, setLong] = useState(null);
+  const [reports, setReports] = useState(null);
 
   const mapContainer = useRef(null);
   const map = useRef(null);
+
+  const fetchReports = useCallback(async () => {
+    try {
+      const { data } = await getAllReports();
+
+      console.log(data);
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchReports();
+  }, [fetchReports]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
