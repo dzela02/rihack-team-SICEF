@@ -1,0 +1,34 @@
+.navigation {
+  &__burger {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+
+  &__content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 10px red;
+
+    &__header {
+      border-bottom: solid 1px black;
+      display: flex;
+      align-items: space-between;
+
+      &__back {
+        padding: 20px;
+      }
+    }
+
+    &__options {
+      padding-top: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+    }
+  }
+}
