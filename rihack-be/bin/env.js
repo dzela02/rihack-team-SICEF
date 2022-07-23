@@ -4,4 +4,6 @@ module.exports = {
   JWT_COOKIE_EXPIRES_IN: 1200000,
   JWT_SECRET: "M@tajdapieshdjpaoskd[aksd",
   JWT_EXPIRES_IN: 20,
+  CLOUDINARY_UPLOAD_PRESET: "gglxyxfi",
+  CLOUDINARY_URL: "https://api.cloudinary.com/v1_1/lagos/image/upload",
 };
