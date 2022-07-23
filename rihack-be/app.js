@@ -4,6 +4,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const bodyParser = require("body-parser");
+const userRouter = require("./routes/userRoutes");
 
 var indexRouter = require("./routes/index");
 
@@ -20,6 +21,7 @@ app.use(
 );
 
 app.use("/", indexRouter);
+app.use("/user-actions", userRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
