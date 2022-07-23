@@ -9,5 +9,3 @@ exports.createNewReport = catchAsync(async (req, res, next) => {
     data: report,
   });
 });
-
-// RADI TATA
