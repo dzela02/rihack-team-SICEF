@@ -5,8 +5,8 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const bodyParser = require("body-parser");
 const userRouter = require("./routes/userRoutes");
-
-var indexRouter = require("./routes/index");
+const reportRouter = require("./routes/reportRoutes");
+const cors = require("cors");
 
 var app = express();
 
@@ -20,7 +20,16 @@ app.use(
   })
 );
 
-app.use("/", indexRouter);
+const corsOptions = {
+  origin: "http://127.0.0.1:3001",
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
+
+// ROUTING
+
+app.use("/reports", reportRouter);
 app.use("/user-actions", userRouter);
 
 // catch 404 and forward to error handler

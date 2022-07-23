@@ -9,16 +9,14 @@ const env = require("../bin/env");
 
 const signToken = (id) => {
   return jwt.sign({ id }, env.JWT_SECRET, {
-    expiresIn: env.JWT_EXPIRES_IN,
+    expiresIn: env.JWT_COOKIE_EXPIRES_IN,
   });
 };
 
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
   const cookieOptions = {
-    expires: new Date(
-      Date.now() + env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-    ),
+    expiresIn: new Date(Date.now() + env.JWT_EXPIRES_IN * 60000),
     httpOnly: true,
   };
 
@@ -34,6 +32,12 @@ const createSendToken = (user, statusCode, res) => {
       user,
     },
   });
+};
+
+exports.getUserIdFromToken = async (token) => {
+  const decoded = await promisify(jwt.verify)(token, env.JWT_SECRET);
+
+  return decoded.id;
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
@@ -82,7 +86,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
 
   // 2) Verification token
-  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  const decoded = await promisify(jwt.verify)(token, env.JWT_SECRET);
 
   // 3) Check if user still exists
   const currentUser = await User.findById(decoded.id);
