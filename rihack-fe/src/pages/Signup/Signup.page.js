@@ -10,6 +10,7 @@ import {
 import { toast } from 'react-toastify';
 import { register } from '../../api/auth/index';
 import TextFieldAdapter from '../../components/TextFieldAdapter/TextFieldAdapter.component';
+import credentialsService from '../../services/credentialsService';
 
 import './Signup.styles.scss';
 
@@ -19,9 +20,19 @@ const Signup = () => {
   const handleSubmit = useCallback(
     async (values) => {
       try {
-        await register(values);
+        const { data } = await register(values);
+        credentialsService.saveAuthBody(data);
+        const {
+          data: {
+            user: { role },
+          },
+        } = data;
 
-        navigate('/login');
+        if (role === 'admin') {
+          navigate('/backoffice');
+        } else {
+          navigate('/');
+        }
       } catch (e) {
         toast.error('Error');
         console.error(e);
@@ -47,6 +58,12 @@ const Signup = () => {
       </div>
       <Form
         onSubmit={handleSubmit}
+        validate={({ password, passwordConfirm }) => {
+          if (password !== passwordConfirm)
+            return {
+              passwordConfirm: `Passwords doesn't match`,
+            };
+        }}
         render={({ handleSubmit, submitting, valid }) => (
           <form
             onSubmit={handleSubmit}
@@ -54,7 +71,7 @@ const Signup = () => {
             autoComplete="off"
           >
             <Field
-              name="fullName"
+              name="name"
               component={TextFieldAdapter}
               label={'Full name*'}
               placeholder={'John Doe'}
@@ -79,7 +96,7 @@ const Signup = () => {
               validate={required('This field is required')}
             />
             <Field
-              name="confirmPassword"
+              name="passwordConfirm"
               component={TextFieldAdapter}
               label={'Confirm Password*'}
               placeholder={'Confirm your password'}

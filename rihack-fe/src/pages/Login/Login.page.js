@@ -23,10 +23,12 @@ const Login = () => {
         const { data } = await login(values);
         credentialsService.saveAuthBody(data);
         const {
-          user: { userRole },
+          data: {
+            user: { role },
+          },
         } = data;
 
-        if (userRole === 'Admin') {
+        if (role === 'admin') {
           navigate('/backoffice');
         } else {
           navigate('/');
@@ -85,7 +87,7 @@ const Login = () => {
             >
               Log in
             </Button>
-            <p style={{ 'margin-top': '20px' }}>Don't have account?</p>
+            <p style={{ marginTop: '20px' }}>Don't have account?</p>
             <Button
               className="login-page__form__signup"
               onClick={() => navigate('/signup')}

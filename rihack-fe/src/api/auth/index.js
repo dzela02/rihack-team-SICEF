@@ -1,13 +1,13 @@
 import httpClient from '../httpClient';
 
-const authPath = (routePath) => `/auth/${routePath}`;
+const authPath = (routePath) => `/user-actions/${routePath}`;
 
 function login(userData) {
   return httpClient.post(authPath`login`, userData);
 }
 
 function register(userData) {
-  return httpClient.post(authPath`register`, userData);
+  return httpClient.post(authPath`signup`, userData);
 }
 
 function forgotPassword(email) {

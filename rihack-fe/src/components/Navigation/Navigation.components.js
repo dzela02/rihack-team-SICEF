@@ -10,8 +10,6 @@ const Navigation = () => {
   const [openNavigation, setOpenNavigation] = useState(false);
   const navigate = useNavigate();
 
-  console.log(token);
-
   return (
     <div className="navigation">
       {!openNavigation && (
@@ -46,6 +44,7 @@ const Navigation = () => {
                 <Button onClick={() => navigate('/settings')}>Settings</Button>
                 <Button
                   onClick={() => {
+                    setOpenNavigation(false);
                     credentialsService.removeAuthBody();
                     navigate('/');
                   }}
