@@ -56,3 +56,48 @@ p {
     }
   }
 }
+
+.pop-notification[class] {
+  word-break: break-word;
+}
+
+body {
+  .Toastify {
+    &__toast {
+      min-height: 32px;
+      padding: 0 16px 0 0;
+
+      &-container {
+        max-width: 320px;
+        width: initial;
+      }
+
+      &--success {
+        background-color: lightgreen;
+        color: green;
+
+        .Toastify__toast-icon {
+          background: url(../public/assets/images/x.svg) no-repeat right;
+        }
+      }
+
+      &--error {
+        background-color: lightcoral;
+        color: red;
+
+        .Toastify__toast-icon {
+          background: url(../public/assets/images/x.svg) no-repeat right;
+        }
+      }
+
+      &-icon {
+        width: 14px;
+        height: 14px;
+        margin-right: 8px;
+        > svg {
+          display: none;
+        }
+      }
+    }
+  }
+}

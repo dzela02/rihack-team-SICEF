@@ -34,15 +34,54 @@ const Navigation = () => {
           <div className="navigation__content__options">
             {token ? (
               <>
-                <Button onClick={() => navigate('/add-report')}>
+                <Button
+                  onClick={() => {
+                    setOpenNavigation(false);
+                    navigate('/');
+                  }}
+                >
+                  Homepage
+                </Button>
+                <Button
+                  onClick={() => {
+                    setOpenNavigation(false);
+                    navigate('/add-report');
+                  }}
+                >
                   Add report
                 </Button>
-                <Button onClick={() => navigate('/reports')}>Reports</Button>
-                <Button onClick={() => navigate('/buildings')}>
+                <Button
+                  onClick={() => {
+                    setOpenNavigation(false);
+                    navigate('/reports');
+                  }}
+                >
+                  Reports
+                </Button>
+                <Button
+                  onClick={() => {
+                    setOpenNavigation(false);
+                    navigate('/buildings');
+                  }}
+                >
                   Buildings
                 </Button>
-                <Button onClick={() => navigate('/awards')}>Your awards</Button>
-                <Button onClick={() => navigate('/settings')}>Settings</Button>
+                <Button
+                  onClick={() => {
+                    setOpenNavigation(false);
+                    navigate('/awards');
+                  }}
+                >
+                  Your awards
+                </Button>
+                <Button
+                  onClick={() => {
+                    setOpenNavigation(false);
+                    navigate('/settings');
+                  }}
+                >
+                  Settings
+                </Button>
                 <Button
                   onClick={() => {
                     setOpenNavigation(false);

@@ -20,12 +20,7 @@ app.use(
   })
 );
 
-const corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 204,
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 // ROUTING
 

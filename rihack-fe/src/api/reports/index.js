@@ -6,4 +6,14 @@ function getAllReports() {
   return httpClient.get(authPath`back-office/reports`);
 }
 
-export { getAllReports };
+const reportsPath = (routePath) => `/reports/${routePath}`;
+
+function addReport(description, long, lat, imageUrl) {
+  return httpClient.post(reportsPath`create-report`, {
+    description,
+    location: { long, lat },
+    imageUrl,
+  });
+}
+
+export { addReport, getAllReports };

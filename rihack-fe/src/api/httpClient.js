@@ -2,10 +2,11 @@ import Axios from 'axios';
 import credentialsService from '../services/credentialsService';
 
 const httpClient = Axios.create({
-  baseURL: `http://127.0.0.1:3000/`,
+  baseURL: `http://172.20.10.14:3000/`,
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
+    'Access-Control-Request-Headers': 'content-type',
   },
 });
 
