@@ -1,5 +1,5 @@
-import Axios from 'axios';
-import httpClient from '../httpClient';
+import { s3 } from "../../config";
+import httpClient from "../httpClient";
 
 const authPath = (routePath) => `/reports/${routePath}`;
 
@@ -9,26 +9,23 @@ function getAllReports() {
 
 const reportsPath = (routePath) => `/reports/${routePath}`;
 
-function addReport(description, longitude, latitude, imageUrl) {
+function addReport(description, long, lat, imageUrl) {
   return httpClient.post(reportsPath`create-report`, {
     description,
-    longitude,
-    latitude,
+    location: { long, lat },
     imageUrl,
   });
 }
 
 async function uploadImage(image) {
-  const formData = new FormData();
-  formData.append('file', image);
-  formData.append('upload_preset', 'gglxyxfi');
+  const uploadedImage = await s3.upload({
+    ContentType: "multipart/form-data",
+    Bucket: "ecorijeka",
+    Key: `test`,
+    Body: image.path,
+  });
 
-  const res = await Axios.post(
-    'http://api.cloudinary.com/v1_1/lagos/image/upload',
-    formData
-  );
-
-  if (res?.data?.secure_url !== '') return res?.data?.secure_url;
+  return uploadedImage.Location;
 }
 
 export { addReport, uploadImage, getAllReports };
