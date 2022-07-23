@@ -1,5 +1,6 @@
 const catchAsync = require("../utils/catchAsync");
 const Report = require("../models/reportModel");
+const User = require("../models/userModel");
 const { getUserIdFromToken } = require("./authController");
 
 const getIdFromHeaders = (headers) => {
@@ -29,7 +30,18 @@ exports.getReportsByUser = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllReports = catchAsync(async (req, res, next) => {
-  const reports = await Report.find();
+  const reports = await Report.aggregate([
+    {
+      $lookup: {
+        from: "users",
+        localField: "user",
+        foreignField: "_id",
+        as: "user",
+      },
+    },
+    { $unwind: "$user" },
+    { $unset: "user.password" },
+  ]);
 
   res.status(200).json({
     status: "success",
