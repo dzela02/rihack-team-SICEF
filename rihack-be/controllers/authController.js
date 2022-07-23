@@ -69,6 +69,20 @@ exports.login = catchAsync(async (req, res, next) => {
   createSendToken(user, 200, res);
 });
 
+exports.adminVerification = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.user.id).select("+password");
+
+  if (!user) {
+    return next(new AppError("User not found", 404));
+  }
+
+  if (user.role !== "admin") {
+    return next(new AppError("You are not an admin", 403));
+  }
+
+  next();
+});
+
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and check of it's there
   let token;
