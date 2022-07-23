@@ -8,11 +8,11 @@ function getAllReports() {
 
 const reportsPath = (routePath) => `/reports/${routePath}`;
 
-function addReport(description, long, lat, imageUrl) {
+function addReport(description, long, lat, image) {
   return httpClient.post(reportsPath`create-report`, {
     description,
-    location: { long, lat },
-    imageUrl,
+    location: { lat, long },
+    image,
   });
 }
 

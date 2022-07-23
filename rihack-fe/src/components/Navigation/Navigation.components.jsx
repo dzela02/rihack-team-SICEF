@@ -33,65 +33,103 @@ const Navigation = () => {
           </div>
           <div className="navigation__content__options">
             {token ? (
-              <>
-                <Button
-                  onClick={() => {
-                    setOpenNavigation(false);
-                    navigate('/');
-                  }}
-                >
-                  Homepage
-                </Button>
-                <Button
-                  onClick={() => {
-                    setOpenNavigation(false);
-                    navigate('/add-report');
-                  }}
-                >
-                  Add report
-                </Button>
-                <Button
-                  onClick={() => {
-                    setOpenNavigation(false);
-                    navigate('/reports');
-                  }}
-                >
-                  Reports
-                </Button>
-                <Button
-                  onClick={() => {
-                    setOpenNavigation(false);
-                    navigate('/buildings');
-                  }}
-                >
-                  Buildings
-                </Button>
-                <Button
-                  onClick={() => {
-                    setOpenNavigation(false);
-                    navigate('/awards');
-                  }}
-                >
-                  Your awards
-                </Button>
-                <Button
-                  onClick={() => {
-                    setOpenNavigation(false);
-                    navigate('/settings');
-                  }}
-                >
-                  Settings
-                </Button>
-                <Button
-                  onClick={() => {
-                    setOpenNavigation(false);
-                    credentialsService.removeAuthBody();
-                    navigate('/');
-                  }}
-                >
-                  Log out
-                </Button>
-              </>
+              user.role === 'admin' ? (
+                <>
+                  <Button
+                    onClick={() => {
+                      setOpenNavigation(false);
+                      navigate('/');
+                    }}
+                  >
+                    Homepage
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setOpenNavigation(false);
+                      navigate('/backoffice');
+                    }}
+                  >
+                    Backoffice
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setOpenNavigation(false);
+                      navigate('/settings');
+                    }}
+                  >
+                    Settings
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setOpenNavigation(false);
+                      credentialsService.removeAuthBody();
+                      navigate('/');
+                    }}
+                  >
+                    Log out
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    onClick={() => {
+                      setOpenNavigation(false);
+                      navigate('/');
+                    }}
+                  >
+                    Homepage
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setOpenNavigation(false);
+                      navigate('/add-report');
+                    }}
+                  >
+                    Add report
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setOpenNavigation(false);
+                      navigate('/reports');
+                    }}
+                  >
+                    Reports
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setOpenNavigation(false);
+                      navigate('/buildings');
+                    }}
+                  >
+                    Buildings
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setOpenNavigation(false);
+                      navigate('/awards');
+                    }}
+                  >
+                    Your awards
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setOpenNavigation(false);
+                      navigate('/settings');
+                    }}
+                  >
+                    Settings
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setOpenNavigation(false);
+                      credentialsService.removeAuthBody();
+                      navigate('/');
+                    }}
+                  >
+                    Log out
+                  </Button>
+                </>
+              )
             ) : (
               <>
                 <Button onClick={() => navigate('/login')}>Log in</Button>
