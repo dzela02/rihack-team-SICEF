@@ -1,5 +1,4 @@
-import { s3 } from "../../config";
-import httpClient from "../httpClient";
+import httpClient from '../httpClient';
 
 const authPath = (routePath) => `/reports/${routePath}`;
 
@@ -17,15 +16,4 @@ function addReport(description, long, lat, imageUrl) {
   });
 }
 
-async function uploadImage(image) {
-  const uploadedImage = await s3.upload({
-    ContentType: "multipart/form-data",
-    Bucket: "ecorijeka",
-    Key: `test`,
-    Body: image.path,
-  });
-
-  return uploadedImage.Location;
-}
-
-export { addReport, uploadImage, getAllReports };
+export { addReport, getAllReports };

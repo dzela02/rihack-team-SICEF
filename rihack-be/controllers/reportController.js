@@ -9,7 +9,10 @@ const getIdFromHeaders = (headers) => {
 exports.createNewReport = catchAsync(async (req, res, next) => {
   const userId = await getUserIdFromToken(getIdFromHeaders(req.headers));
 
-  const report = await Report.create({ ...req.body, user: userId });
+  const report = await Report.create({
+    ...req.body,
+    user: userId,
+  });
 
   res.status(201).json({
     status: "success",
