@@ -24,6 +24,7 @@ const reportSchema = new mongoose.Schema({
     default: "pending",
   },
   createdAt: Date,
+  updatedAt: Date | null,
 });
 
 reportSchema.pre("save", async function (next) {
