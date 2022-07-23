@@ -23,3 +23,36 @@ h6,
 p {
   margin: 0;
 }
+
+.eco-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__close {
+    width: 40px;
+    height: 40px;
+    background: url(../public/assets/images/x.svg) no-repeat right;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  > div:nth-child(3) {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    h3 {
+      margin-bottom: 20px;
+      font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    }
+  }
+}

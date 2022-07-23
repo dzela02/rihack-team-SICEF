@@ -13,6 +13,7 @@
     height: 100%;
     background-color: white;
     border: 10px red;
+    z-index: 100;
 
     &__header {
       border-bottom: solid 1px black;
