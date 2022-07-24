@@ -13,6 +13,7 @@ router.route("/get-user-reports").get(reportController.getReportsByUser);
 router.use(adminVerification);
 
 router.route("/back-office/reports").get(reportController.getAllReports);
+
 router
   .route("/back-office/changeStatus/:id")
   .patch(reportController.changeStatus);
