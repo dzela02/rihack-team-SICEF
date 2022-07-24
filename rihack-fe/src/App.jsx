@@ -7,7 +7,6 @@ import Home from './pages/Home';
 import Reports from './pages/Reports';
 import BackOffice from './pages/BackOffice';
 import AddReport from './pages/AddReport';
-import Map from './pages/Map';
 import Buildings from './pages/Buildings';
 
 function App() {
@@ -29,7 +28,6 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/reports" element={<Reports />} />
         <Route path="/backoffice" element={<BackOffice />} />
-        <Route path="/map" element={<Map />} />
         <Route path="/buildings" element={<Buildings />} />
         <Route authorized path="/add-report" element={<AddReport />} />
       </Routes>

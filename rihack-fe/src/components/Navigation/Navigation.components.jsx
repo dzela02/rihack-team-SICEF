@@ -82,14 +82,6 @@ const Navigation = () => {
                   <Button
                     onClick={() => {
                       setOpenNavigation(false);
-                      navigate('/map');
-                    }}
-                  >
-                    Map
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      setOpenNavigation(false);
                       navigate('/add-report');
                     }}
                   >
@@ -110,14 +102,6 @@ const Navigation = () => {
                     }}
                   >
                     Buildings
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      setOpenNavigation(false);
-                      navigate('/awards');
-                    }}
-                  >
-                    Your awards
                   </Button>
                   <Button
                     onClick={() => {
