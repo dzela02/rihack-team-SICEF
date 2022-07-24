@@ -54,6 +54,14 @@ const Navigation = () => {
                   <Button
                     onClick={() => {
                       setOpenNavigation(false);
+                      navigate('/leaderboard');
+                    }}
+                  >
+                    Leaderboard
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setOpenNavigation(false);
                       navigate('/settings');
                     }}
                   >
@@ -102,6 +110,14 @@ const Navigation = () => {
                     }}
                   >
                     Buildings
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setOpenNavigation(false);
+                      navigate('/leaderboard');
+                    }}
+                  >
+                    Leaderboard
                   </Button>
                   <Button
                     onClick={() => {

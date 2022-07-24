@@ -20,13 +20,14 @@ const Signup = () => {
   const handleSubmit = useCallback(
     async (values) => {
       try {
-        const { data } = await register(values);
-        credentialsService.saveAuthBody(data);
         const {
           data: {
-            user: { role },
+            token,
+            data: { user },
           },
-        } = data;
+        } = await register(values);
+        credentialsService.saveAuthBody({ token, user });
+        const { role } = user;
 
         if (role === 'admin') {
           navigate('/backoffice');

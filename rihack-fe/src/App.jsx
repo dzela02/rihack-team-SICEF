@@ -8,6 +8,7 @@ import Reports from './pages/Reports';
 import BackOffice from './pages/BackOffice';
 import AddReport from './pages/AddReport';
 import Buildings from './pages/Buildings';
+import Leaderboard from './pages/Leaderboard';
 
 function App() {
   useEffect(() => {
@@ -29,7 +30,8 @@ function App() {
         <Route path="/reports" element={<Reports />} />
         <Route path="/backoffice" element={<BackOffice />} />
         <Route path="/buildings" element={<Buildings />} />
-        <Route authorized path="/add-report" element={<AddReport />} />
+        <Route path="/add-report" element={<AddReport />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
       </Routes>
     </BrowserRouter>
   );
