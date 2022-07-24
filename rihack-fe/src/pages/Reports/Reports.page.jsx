@@ -81,7 +81,6 @@ const Reports = () => {
                 <TableCell align="right">Image</TableCell>
                 <TableCell align="right">Description</TableCell>
                 <TableCell align="right">Location</TableCell>
-                <TableCell align="right">Created at</TableCell>
                 <TableCell align="right">Status</TableCell>
               </TableRow>
             </TableHead>
@@ -109,9 +108,6 @@ const Reports = () => {
                     >
                       Show location
                     </Button>
-                  </TableCell>
-                  <TableCell align="right">
-                    {new Date(row.createdAt).toLocaleString()}
                   </TableCell>
                   <TableCell align="right">
                     <span
