@@ -51,6 +51,7 @@ exports.getAllReports = catchAsync(async (req, res, next) => {
 exports.changeStatus = catchAsync(async (req, res, next) => {
   const report = await Report.findByIdAndUpdate(req.params.id, {
     status: req.body.status,
+    points: req.body.points,
     updatedAt: new Date().toISOString(),
   });
 

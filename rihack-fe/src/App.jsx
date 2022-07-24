@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Reports from './pages/Reports';
 import BackOffice from './pages/BackOffice';
 import AddReport from './pages/AddReport';
+import Map from './pages/Map';
 
 function App() {
   useEffect(() => {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/reports" element={<Reports />} />
         <Route path="/backoffice" element={<BackOffice />} />
+        <Route path="/map" element={<Map />} />
         <Route authorized path="/add-report" element={<AddReport />} />
       </Routes>
     </BrowserRouter>

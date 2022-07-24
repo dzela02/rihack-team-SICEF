@@ -1,6 +1,7 @@
 const catchAsync = require('../utils/catchAsync');
 const Building = require('../models/buildingModel');
 const { getUserIdFromToken, getIdFromHeaders } = require('./authController');
+const AppError = require('../utils/appError');
 
 exports.createBuilding = catchAsync(async (req, res, next) => {
   const userId = await getUserIdFromToken(getIdFromHeaders(req.headers));
@@ -54,5 +55,18 @@ exports.getBuildings = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     data: buildings,
+  });
+});
+
+exports.getusersBuilding = catchAsync(async (req, res, next) => {
+  const userId = await getUserIdFromToken(getIdFromHeaders(req.headers));
+
+  const building = await Building.find({ administrator: userId });
+
+  if (!building.length) return new AppError('Building not found :( ', 404);
+
+  res.status(200).json({
+    status: 'success',
+    data: building[0],
   });
 });

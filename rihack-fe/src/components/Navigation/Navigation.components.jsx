@@ -82,6 +82,14 @@ const Navigation = () => {
                   <Button
                     onClick={() => {
                       setOpenNavigation(false);
+                      navigate('/map');
+                    }}
+                  >
+                    Map
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setOpenNavigation(false);
                       navigate('/add-report');
                     }}
                   >
