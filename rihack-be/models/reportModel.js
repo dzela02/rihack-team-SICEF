@@ -27,7 +27,7 @@ const reportSchema = new mongoose.Schema({
   updatedAt: Date | null,
   pointsAwarded: {
     type: Number,
-    default: 1,
+    default: 0,
   },
 });
 
