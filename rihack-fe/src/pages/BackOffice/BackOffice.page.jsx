@@ -10,7 +10,7 @@ import {
   Modal,
 } from '@mui/material';
 import mapboxgl from 'mapbox-gl';
-import { getAllReports } from '../../api/reports/index';
+import { getAllReports, updateReportStatus } from '../../api/reports/index';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './BackOffice.styles.scss';
@@ -66,6 +66,19 @@ const BackOffice = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lat, long, mapContainer]);
 
+  const changeStatus = useCallback(
+    async (id, status) => {
+      try {
+        await updateReportStatus(id, status);
+
+        fetchReports();
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    [fetchReports]
+  );
+
   return (
     <div className="back-office">
       <Navigation />
@@ -90,7 +103,7 @@ const BackOffice = () => {
               {reports.map((row) => (
                 <TableRow key={row._id}>
                   <TableCell component="th" scope="row">
-                    {row.reporter}
+                    {row.user.name}
                   </TableCell>
                   <TableCell align="right">
                     <Button
@@ -118,10 +131,18 @@ const BackOffice = () => {
                   <TableCell align="right">{row.updatedAt}</TableCell>
                   <TableCell align="right">{row.status}</TableCell>
                   <TableCell align="right">
-                    {row.status === 'pending' && <Button>Resolve</Button>}
+                    {row.status === 'pending' && (
+                      <Button onClick={() => changeStatus(row._id, 'resolved')}>
+                        Resolve
+                      </Button>
+                    )}
                   </TableCell>
                   <TableCell align="right">
-                    {row.status === 'pending' && <Button>Decline</Button>}
+                    {row.status === 'pending' && (
+                      <Button onClick={() => changeStatus(row._id, 'rejected')}>
+                        Decline
+                      </Button>
+                    )}
                   </TableCell>
                 </TableRow>
               ))}

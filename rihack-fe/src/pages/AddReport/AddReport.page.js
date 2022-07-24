@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import Navigation from '../../components/Navigation';
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { Field, Form } from 'react-final-form';
 import TextFieldAdapter from '../../components/TextFieldAdapter/TextFieldAdapter.component';
 import { Button } from '@mui/material';
@@ -11,35 +11,40 @@ import GlobalLoader from '../../components/GlobalLoader';
 import './AddReport.styles.scss';
 
 const AddReport = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const inputRef = useRef();
 
   const [image, setImage] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = useCallback(async (values) => {
-    // let imageUrl;
-    setIsLoading(true);
-    // try {
-    //   imageUrl = await uploadImage(image);
-    // } catch (err) {
-    //   toast.error('Error uploading image');
-    // } finally {
-    try {
-      await addReport(
-        values.description,
-        14.467993,
-        45.327037,
-        'https://nmcdn.io/e186d21f8c7946a19faed23c3da2f0da/8ed2672177464f2e9b193130d1000c50/files/blog/trash-volumes-increase/trash.jpg'
-      );
-    } catch (err) {
-      toast.error('Error adding report');
-    } finally {
-      setIsLoading(false);
-    }
-    // }
-  }, []);
+  const handleSubmit = useCallback(
+    async (values) => {
+      // let imageUrl;
+      setIsLoading(true);
+      // try {
+      //   imageUrl = await uploadImage(image);
+      // } catch (err) {
+      //   toast.error('Error uploading image');
+      // } finally {
+      try {
+        await addReport(
+          values.description,
+          14.467993,
+          45.327037,
+          'https://nmcdn.io/e186d21f8c7946a19faed23c3da2f0da/8ed2672177464f2e9b193130d1000c50/files/blog/trash-volumes-increase/trash.jpg'
+        );
+
+        navigate('/reports');
+      } catch (err) {
+        toast.error('Error adding report');
+      } finally {
+        setIsLoading(false);
+      }
+      // }
+    },
+    [navigate]
+  );
 
   const handleInputChange = useCallback((event) => {
     const file = event.target.files;

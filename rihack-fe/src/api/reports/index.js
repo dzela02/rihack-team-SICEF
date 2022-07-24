@@ -6,6 +6,10 @@ function getAllReports() {
   return httpClient.get(authPath`back-office/reports`);
 }
 
+function getUserReports(userId) {
+  return httpClient.get(authPath`get-user-reports`, userId);
+}
+
 const reportsPath = (routePath) => `/reports/${routePath}`;
 
 function addReport(description, long, lat, image) {
@@ -16,4 +20,10 @@ function addReport(description, long, lat, image) {
   });
 }
 
-export { addReport, getAllReports };
+function updateReportStatus(reportId, status) {
+  return httpClient.patch(`/reports/back-office/changeStatus/${reportId}`, {
+    status,
+  });
+}
+
+export { addReport, getAllReports, getUserReports, updateReportStatus };

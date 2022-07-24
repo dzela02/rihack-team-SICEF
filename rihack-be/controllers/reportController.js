@@ -61,7 +61,7 @@ exports.changeStatus = catchAsync(async (req, res, next) => {
     });
   }
 
-  res.status(301).json({
+  res.status(200).json({
     status: "success",
   });
 });
