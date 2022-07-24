@@ -67,9 +67,9 @@ const BackOffice = () => {
   }, [lat, long, mapContainer]);
 
   const changeStatus = useCallback(
-    async (id, status) => {
+    async (id, status, points) => {
       try {
-        await updateReportStatus(id, status);
+        await updateReportStatus(id, status, points);
 
         fetchReports();
       } catch (e) {
@@ -93,7 +93,6 @@ const BackOffice = () => {
                 <TableCell align="right">Description</TableCell>
                 <TableCell align="right">Location</TableCell>
                 <TableCell align="right">Created at</TableCell>
-                <TableCell align="right">Updated at</TableCell>
                 <TableCell align="right">Status</TableCell>
                 <TableCell align="right">Resolve</TableCell>
                 <TableCell align="right">Decline</TableCell>
@@ -127,12 +126,27 @@ const BackOffice = () => {
                       Show location
                     </Button>
                   </TableCell>
-                  <TableCell align="right">{row.createdAt}</TableCell>
-                  <TableCell align="right">{row.updatedAt}</TableCell>
-                  <TableCell align="right">{row.status}</TableCell>
+                  <TableCell align="right">
+                    {new Date(row.createdAt).toLocaleString()}
+                  </TableCell>
+                  <TableCell align="right">
+                    <span
+                      className={
+                        row.status === 'pending'
+                          ? 'status-yellow'
+                          : row.status === 'resolved'
+                          ? 'status-green'
+                          : 'status-red'
+                      }
+                    >
+                      {row.status}
+                    </span>
+                  </TableCell>
                   <TableCell align="right">
                     {row.status === 'pending' && (
-                      <Button onClick={() => changeStatus(row._id, 'resolved')}>
+                      <Button
+                        onClick={() => changeStatus(row._id, 'resolved', 1)}
+                      >
                         Resolve
                       </Button>
                     )}

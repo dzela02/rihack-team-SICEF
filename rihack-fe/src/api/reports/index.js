@@ -20,9 +20,10 @@ function addReport(description, long, lat, image) {
   });
 }
 
-function updateReportStatus(reportId, status) {
+function updateReportStatus(reportId, status, points) {
   return httpClient.patch(`/reports/back-office/changeStatus/${reportId}`, {
     status,
+    points,
   });
 }
 

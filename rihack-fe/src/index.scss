@@ -100,4 +100,12 @@ body {
       }
     }
   }
+
+  .MuiTableHead-root {
+    background-color: gray;
+  }
+
+  .MuiTableRow-root:nth-child(2n) {
+    background-color: lightgray;
+  }
 }
