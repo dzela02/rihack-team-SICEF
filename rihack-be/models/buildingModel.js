@@ -31,6 +31,10 @@ const buildingSchema = new mongoose.Schema({
       default: 0,
     },
   },
+  points: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const Building = mongoose.model("building", buildingSchema);

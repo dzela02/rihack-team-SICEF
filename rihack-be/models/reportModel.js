@@ -25,6 +25,10 @@ const reportSchema = new mongoose.Schema({
   },
   createdAt: Date,
   updatedAt: Date | null,
+  pointsAwarded: {
+    type: Number,
+    default: 1,
+  },
 });
 
 reportSchema.pre("save", async function (next) {
