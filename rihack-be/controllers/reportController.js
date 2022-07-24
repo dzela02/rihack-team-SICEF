@@ -1,10 +1,10 @@
-const catchAsync = require("../utils/catchAsync");
-const Report = require("../models/reportModel");
-const User = require("../models/userModel");
-const { getUserIdFromToken } = require("./authController");
+const catchAsync = require('../utils/catchAsync');
+const Report = require('../models/reportModel');
+const User = require('../models/userModel');
+const { getUserIdFromToken } = require('./authController');
 
 const getIdFromHeaders = (headers) => {
-  return headers.authorization.split(" ")[1];
+  return headers.authorization.split(' ')[1];
 };
 
 exports.createNewReport = catchAsync(async (req, res, next) => {
@@ -16,7 +16,7 @@ exports.createNewReport = catchAsync(async (req, res, next) => {
   });
 
   res.status(201).json({
-    status: "success",
+    status: 'success',
     data: report,
   });
 });
@@ -27,7 +27,7 @@ exports.getReportsByUser = catchAsync(async (req, res, next) => {
   const reports = await Report.find({ user: userId });
 
   res.status(200).json({
-    status: "success",
+    status: 'success',
     data: reports,
   });
 });
@@ -36,18 +36,18 @@ exports.getAllReports = catchAsync(async (req, res, next) => {
   const reports = await Report.aggregate([
     {
       $lookup: {
-        from: "users",
-        localField: "user",
-        foreignField: "_id",
-        as: "user",
+        from: 'users',
+        localField: 'user',
+        foreignField: '_id',
+        as: 'user',
       },
     },
-    { $unwind: "$user" },
-    { $unset: "user.password" },
+    { $unwind: '$user' },
+    { $unset: 'user.password' },
   ]);
 
   res.status(200).json({
-    status: "success",
+    status: 'success',
     data: reports,
   });
 });
@@ -59,13 +59,13 @@ exports.changeStatus = catchAsync(async (req, res, next) => {
     updatedAt: new Date().toISOString(),
   });
 
-  if (req.body.status === "resolved") {
+  if (req.body.status === 'resolved') {
     await User.findByIdAndUpdate(report.user, {
       points: req.body.points,
     });
   }
 
-  res.status(301).json({
-    status: "success",
+  res.status(200).json({
+    status: 'success',
   });
 });

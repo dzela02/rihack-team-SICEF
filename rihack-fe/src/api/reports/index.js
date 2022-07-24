@@ -16,4 +16,10 @@ function addReport(description, long, lat, image) {
   });
 }
 
-export { addReport, getAllReports };
+function updateReportStatus(reportId, status) {
+  return httpClient.patch(`/reports/back-office/changeStatus/${reportId}`, {
+    status,
+  });
+}
+
+export { addReport, getAllReports, updateReportStatus };
