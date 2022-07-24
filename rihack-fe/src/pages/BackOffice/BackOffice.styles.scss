@@ -10,23 +10,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: solid 3px black;
+    border: solid 1px black;
 
     .status {
       &-green {
         padding: 5px;
         border-radius: 5px;
-        background-color: green;
+        background-color: lightgreen;
       }
       &-red {
         padding: 5px;
         border-radius: 5px;
-        background-color: red;
+        background-color: lightcoral;
       }
       &-yellow {
         padding: 5px;
         border-radius: 5px;
-        background-color: yellow;
+        background-color: lightyellow;
       }
     }
   }
