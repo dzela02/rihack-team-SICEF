@@ -14,12 +14,12 @@ const reportSchema = new mongoose.Schema({
       required: [true, "Please provide a longitude"],
     },
     lat: {
-      type: String,
+      type: Number,
       required: [true, "Please provide a latitude"],
     },
   },
   status: {
-    type: Number,
+    type: String,
     enum: ["pending", "resolved", "rejected"],
     default: "pending",
   },

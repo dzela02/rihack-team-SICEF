@@ -53,10 +53,17 @@ exports.getAllReports = catchAsync(async (req, res, next) => {
 });
 
 exports.changeStatus = catchAsync(async (req, res, next) => {
+  console.log(req.body);
   const report = await Report.findByIdAndUpdate(req.params.id, {
     status: req.body.status,
     updatedAt: new Date().toISOString(),
   });
+
+  if (req.body.status === "resolved") {
+    await User.findByIdAndUpdate(report.user, {
+      points: req.body.points,
+    });
+  }
 
   res.status(301).json({
     status: "success",
