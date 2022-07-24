@@ -49,6 +49,7 @@ const userSchema = new mongoose.Schema({
     default: true,
     select: false,
   },
+  building: mongoose.Schema.Types.ObjectId,
 });
 
 userSchema.pre("save", async function (next) {

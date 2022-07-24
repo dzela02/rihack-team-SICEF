@@ -40,6 +40,10 @@ exports.getUserIdFromToken = async (token) => {
   return decoded.id;
 };
 
+exports.getIdFromHeaders = (headers) => {
+  return headers.authorization.split(" ")[1];
+};
+
 exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
     name: req.body.name,

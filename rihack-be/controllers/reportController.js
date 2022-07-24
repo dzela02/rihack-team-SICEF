@@ -1,11 +1,7 @@
 const catchAsync = require("../utils/catchAsync");
 const Report = require("../models/reportModel");
 const User = require("../models/userModel");
-const { getUserIdFromToken } = require("./authController");
-
-const getIdFromHeaders = (headers) => {
-  return headers.authorization.split(" ")[1];
-};
+const { getUserIdFromToken, getIdFromHeaders } = require("./authController");
 
 exports.createNewReport = catchAsync(async (req, res, next) => {
   const userId = await getUserIdFromToken(getIdFromHeaders(req.headers));

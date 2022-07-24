@@ -8,6 +8,11 @@ const buildingSchema = new mongoose.Schema({
   },
   administrator: mongoose.Schema.Types.ObjectId,
   users: [mongoose.Schema.Types.ObjectId],
+  joinCode: {
+    type: String,
+    unique: true,
+    required: [true, "Please provide a join code"],
+  },
   stats: {
     metal: {
       type: Number,
@@ -27,3 +32,7 @@ const buildingSchema = new mongoose.Schema({
     },
   },
 });
+
+const Building = mongoose.model("building", buildingSchema);
+
+module.exports = Building;
